@@ -1,0 +1,197 @@
+\documentclass[journal,13pt,twocolumn]{IEEEtran}
+
+\usepackage{setspace}
+\usepackage{gensymb}
+\counterwithin{equation}{section}
+\singlespacing
+
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+
+\usepackage[cmex10]{amsmath}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{steinmetz}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{all}
+\usetikzlibrary{calc,math}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+  %optionally (for landscape tables embedded in another document): %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.7}
+\usepackage{tikz}
+\DeclareMathOperator*{\Res}{Res}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert} % \abs{} for numerisk værdi
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\bignorm}[1]{\Bigl \| #1 \Bigr \| #1}
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+\begin{document}
+\title{Assignment 3} 
+\author{Shweta Verma} 
+\maketitle
+\newpage
+\bigskip
+\begin{abstract}
+This document examines the consistency of the system of equations.
+\end{abstract}
+\section{\textbf{Problem}}
+Examine the consistency of the system of given equations:
+\begin{align}
+ 3x-y-2z=2\\
+ 2y-z=-1\\
+ 3x-5y=3  
+\end{align}
+\section{\textbf{Solution}}
+The given system of equations can be represented as:
+ \begin{align}
+ \vec{A}\vec{x}=\vec{B}
+ \end{align}
+Coefficient Matrix $\vec{A}$
+\begin{align}
+\vec{A} = \myvec
+            {3 & -1 & -2\\
+            0 & 2 & -1\\
+            3 & -5 & 0}  
+\end{align}   
+Constant Vector $\vec{B}$
+\begin{align}                         
+\vec{B} = \myvec{
+            2\\
+            -1\\
+            3}
+\end{align}      
+\begin{align}
+\det{A} = \mydet
+           {3 & -1 & -2\\
+            0 & 2 & -1\\
+            3 & -5 & 0}\\
+\det{A} =  0 
+\end{align}
+The given system of equations are either inconsistent or has infinitely many solutions.
+If
+\begin{align}
+  Adj(\vec{A}).\vec{B} = O
+\end{align}
+then infinitely many solutions
+otherwise system of equations are inconsistent.
+\begin{align}
+ Adj(\vec{A}) = \myvec
+            {-5 & 10 & 5\\
+            -3 & 6 & 3\\
+            -6 & 12 & 6}\\
+ Adj(\vec{A}).\vec{B} = \myvec
+            {-5 & 10 & 5\\
+            -3 & 6 & 3\\
+            -6 & 12 & 6}
+            \myvec{
+            2\\
+            -1\\
+            3}\\
+ Adj(\vec{A}).\vec{B} =   \myvec{
+            -5\\
+            -3\\
+            -6}\\
+ \because Adj(\vec{A}).\vec{B} \neq O                               
+\end{align}
+ Therefore  the given system of equations are inconsistent. 
+ 
+ \begin{center}
+ OR
+ \end{center}
+ Augumented Matrix-
+\begin{align}
+\vec{A}|\vec{B}=\left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 3 & -5 & 0 & 3
+\end{array}\right) 
+\end{align}
+ Applying Row operations on (2.11)\\
+\begin{align}
+   \left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 3 & -5 & 0 & 3
+\end{array}\right)\xleftrightarrow[]{R3\rightarrow R1-R3} \left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 0 & 4 & -2 & -1
+\end{array}\right)
+\end{align}
+\begin{align}
+\left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 0 & 4 & -2 & -1
+\end{array}\right)\xleftrightarrow[]{R3\rightarrow R3-R2}
+\left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 0 & 0 & 0 & 1
+\end{array}\right)
+\end{align}
+\begin{align}
+\vec{A}|\vec{B}=\left(\begin{array}{ccc|c}  
+ 3 & -1 & -2 & 2\\  
+ 0 & 2 & -1 & -1\\
+ 0 & 0 & 0 & 1
+\end{array}\right) 
+\vec{A}=\myvec
+ {3 & -1 & -2\\  
+ 0 & 2 & -1\\
+ 0 & 0 & 0}
+\end{align}
+\begin{align}
+R(\vec{A}|\vec{B}) = 3\\
+R(\vec{A} = 2\\
+R(\vec{A}|\vec{B}) \neq  R(\vec{A})
+\end{align}
+The given system of equations are inconsistent.
+\end{document}
